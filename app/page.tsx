@@ -78,14 +78,20 @@ export default function Home() {
           transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] } as any}
           className="mt-24 max-w-5xl mx-auto px-8"
         >
-          <div className="relative rounded-2xl overflow-hidden border border-outline-variant/10 shadow-2xl bg-surface-container-low">
-            <img
-              className="w-full h-auto"
-              alt="Dashboard Interface"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQg8bcnBmblSu-hVORUkK2HFXJBVwzJSGc0yPjYeYTWjMB6hu2VyuIVgIQ0jJqYSSHkHrfaj2Bts8ZNS13a3Rt_z9O-EYk_28fbFnc0q9SZ7CvrJlzRnJjmkulmhVOpRh6hdxoaMi-UGMPiqiBhte6anNKCM56o_BkHFR4xdaYQT5InhxyD3UjX8ouNTDuWdceuWtOdLheNqaOOWQxX4y4FlsEZQjoJUdn7030eA__G6s3sQZMv0o4TBsfPq6mShSqUlGlf2qtmxI4"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+          <div className="relative rounded-2xl overflow-hidden border border-outline-variant/10 shadow-2xl bg-surface-container-low flex items-center justify-center p-12 md:p-24 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.05)_0%,transparent_100%)]">
+            <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)] ring-1 ring-white/10">
+              <Image
+                src="/KUB-Icon.png"
+                alt="Ken Utility Bot Logo"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent"></div>
           </div>
+          <p className="text-center mt-8 text-on-surface-variant/50 font-medium text-sm tracking-widest uppercase">
+            made by reesekei <span className="text-primary/60">❤️</span>
+          </p>
         </motion.div>
       </section>
 
@@ -127,32 +133,6 @@ export default function Home() {
                 </motion.div>
               ))}
             </div>
-        </div>
-      </section>
-
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
-            {[
-              { val: "12K+", label: "Active Servers" },
-              { val: "1.2M", label: "Users Managed" },
-              { val: "99.9%", label: "Uptime History" },
-              { val: "24/7", label: "Support Readiness" }
-            ].map((stat, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-              >
-                <div className="font-headline text-4xl font-extrabold text-primary mb-2">{stat.val}</div>
-                <div className="text-on-surface-variant text-xs font-bold uppercase tracking-widest">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
     </main>

@@ -18,8 +18,6 @@ const Footer = () => (
                 <div className="flex flex-col gap-3">
                     <span className="text-slate-300 font-semibold mb-2">Connect</span>
                     <Link href={process.env.NEXT_PUBLIC_DISCORD_SUPPORT_LINK || "#"} target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-indigo-300 transition-colors">Support Server</Link>
-                    <Link href="#" className="text-slate-500 hover:text-indigo-300 transition-colors">Security</Link>
-                    <Link href="#" className="text-slate-500 hover:text-indigo-300 transition-colors">Contact</Link>
                 </div>
             </div>
         </div>

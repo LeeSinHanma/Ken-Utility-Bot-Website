@@ -13,7 +13,7 @@ const Navbar = () => {
                 <Link href="/" className="flex items-center gap-3 group">
                     <div className="relative w-8 h-8 rounded-lg overflow-hidden ring-1 ring-white/10 group-hover:ring-primary/50 transition-all">
                         <Image 
-                            src="/KUB-Icon.jpg" 
+                            src="/KUB-Icon.png" 
                             alt="KUB Icon" 
                             fill
                             className="object-cover"
@@ -37,9 +37,14 @@ const Navbar = () => {
                     <Link href={process.env.NEXT_PUBLIC_DISCORD_SUPPORT_LINK || "#"} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">Support</Link>
                 </div>
                 <div className="flex items-center gap-4">
-                    <button className="bg-gradient-to-br from-primary to-primary-container text-white px-5 md:px-6 py-2 md:py-2.5 rounded-xl text-xs md:text-sm font-bold tracking-wide hover:opacity-90 transition-all">
+                    <Link 
+                        href={process.env.NEXT_PUBLIC_DISCORD_INVITE_LINK || "#"} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="bg-gradient-to-br from-primary to-primary-container text-white px-5 md:px-6 py-2 md:py-2.5 rounded-xl text-xs md:text-sm font-bold tracking-wide hover:opacity-90 transition-all"
+                    >
                         Add to Discord
-                    </button>
+                    </Link>
                 </div>
             </div>
         </nav>
