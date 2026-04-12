@@ -1,65 +1,160 @@
+"use client";
+
+import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function Home() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } as any
+    }
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="relative">
+      <section className="relative pt-48 pb-32 overflow-hidden hero-gradient-center">
+        <motion.div 
+          className="max-w-7xl mx-auto px-8 text-center"
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+        >
+          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant/15 mb-8">
+            <span className="w-2 h-2 rounded-full bg-secondary"></span>
+            <span className="text-xs font-label font-medium uppercase tracking-widest text-on-surface-variant">
+              Now Live
+            </span>
+          </motion.div>
+          <motion.h1 
+            variants={itemVariants}
+            className="font-headline text-5xl md:text-7xl font-extrabold tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-b from-slate-50 to-slate-400"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+            Discord Utility,
+            <br />
+            Reimagined.
+          </motion.h1>
+          <motion.p 
+            variants={itemVariants}
+            className="max-w-2xl mx-auto text-lg md:text-xl text-on-surface-variant leading-relaxed mb-12"
+          >
+            A simple Discord utility bot for managing finances, splitting payments, and smart alerts. Designed for professional servers that demand efficiency.
+          </motion.p>
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href={process.env.NEXT_PUBLIC_DISCORD_INVITE_LINK || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto bg-gradient-to-br from-primary to-primary-container text-white px-8 py-4 rounded-xl font-bold text-base hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.3)] transition-all flex items-center justify-center"
+            >
+              Invite Bot
+            </Link>
+            <Link
+              href="/privacy"
+              className="w-full sm:w-auto bg-surface-container-high text-on-surface px-8 py-4 rounded-xl font-bold text-base hover:bg-surface-container-highest transition-all flex items-center justify-center"
+            >
+              Privacy Policy
+            </Link>
+          </motion.div>
+        </motion.div>
+        
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] } as any}
+          className="mt-24 max-w-5xl mx-auto px-8"
+        >
+          <div className="relative rounded-2xl overflow-hidden border border-outline-variant/10 shadow-2xl bg-surface-container-low">
+            <img
+              className="w-full h-auto"
+              alt="Dashboard Interface"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQg8bcnBmblSu-hVORUkK2HFXJBVwzJSGc0yPjYeYTWjMB6hu2VyuIVgIQ0jJqYSSHkHrfaj2Bts8ZNS13a3Rt_z9O-EYk_28fbFnc0q9SZ7CvrJlzRnJjmkulmhVOpRh6hdxoaMi-UGMPiqiBhte6anNKCM56o_BkHFR4xdaYQT5InhxyD3UjX8ouNTDuWdceuWtOdLheNqaOOWQxX4y4FlsEZQjoJUdn7030eA__G6s3sQZMv0o4TBsfPq6mShSqUlGlf2qtmxI4"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+          </div>
+        </motion.div>
+      </section>
+
+      <section className="py-32 bg-surface-container-low relative">
+        <div className="max-w-7xl mx-auto px-8 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="font-headline text-4xl font-bold tracking-tight text-white mb-4">Precision Tools</h2>
+              <p className="text-on-surface-variant text-lg max-w-xl mx-auto mb-16">
+                {process.env.NEXT_PUBLIC_SITE_NAME} focuses on the essentials, providing high-performance utility without the clutter.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                { icon: "account_balance", title: "Bank", desc: "Centralized financial management and ledger system for your Discord guild ecosystem.", color: "primary" },
+                { icon: "content_cut", title: "Split", desc: "Automated bill splitting and debt tracking between server members with one simple command.", color: "secondary" },
+                { icon: "notifications_active", title: "Alert", desc: "High-priority notification triggers for system events and personalized member reminders.", color: "tertiary" }
+              ].map((feature, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className="group p-8 rounded-2xl bg-surface-container hover:bg-surface-container-high transition-all duration-300 transform hover:-translate-y-2 border border-outline-variant/5"
+                >
+                  <div className={`w-14 h-14 rounded-xl bg-${feature.color}/10 flex items-center justify-center mb-6 ring-1 ring-${feature.color}/20 group-hover:ring-${feature.color}/50 transition-all`}>
+                    <span className={`material-symbols-outlined text-${feature.color} text-3xl`}>{feature.icon}</span>
+                  </div>
+                  <h3 className="font-headline text-xl font-bold text-slate-100 mb-3">{feature.title}</h3>
+                  <p className="text-on-surface-variant leading-relaxed text-sm">
+                    {feature.desc}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+            {[
+              { val: "12K+", label: "Active Servers" },
+              { val: "1.2M", label: "Users Managed" },
+              { val: "99.9%", label: "Uptime History" },
+              { val: "24/7", label: "Support Readiness" }
+            ].map((stat, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <div className="font-headline text-4xl font-extrabold text-primary mb-2">{stat.val}</div>
+                <div className="text-on-surface-variant text-xs font-bold uppercase tracking-widest">
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
