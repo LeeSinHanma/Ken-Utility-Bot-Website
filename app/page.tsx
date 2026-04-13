@@ -78,16 +78,19 @@ export default function Home() {
           transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] } as any}
           className="mt-24 max-w-5xl mx-auto px-8"
         >
-          <div className="relative rounded-2xl overflow-hidden border border-outline-variant/10 shadow-2xl bg-surface-container-low flex items-center justify-center p-12 md:p-24 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.05)_0%,transparent_100%)]">
-            <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)] ring-1 ring-white/10">
+          <div className="relative rounded-3xl overflow-hidden border border-outline-variant/10 shadow-2xl bg-[#0b1326]">
+            <div className="relative w-full aspect-[1.8/1]">
               <Image
-                src="/KUB-Icon.png"
-                alt="Ken Utility Bot Logo"
+                src="/banner.png"
+                alt="Ken Utility Bot Banner"
                 fill
-                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 1200px"
+                quality={100}
+                unoptimized
+                className="object-contain"
+                priority
               />
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent"></div>
           </div>
           <p className="text-center mt-8 text-on-surface-variant/50 font-medium text-sm tracking-widest uppercase">
             made by reesekei <span className="text-primary/60">❤️</span>

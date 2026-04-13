@@ -13,9 +13,10 @@ const Navbar = () => {
                 <Link href="/" className="flex items-center gap-3 group">
                     <div className="relative w-8 h-8 rounded-lg overflow-hidden ring-1 ring-white/10 group-hover:ring-primary/50 transition-all">
                         <Image 
-                            src="/KUB-Icon.png" 
-                            alt="KUB Icon" 
+                            src="/icon.png" 
+                            alt="icon" 
                             fill
+                            sizes="32px"
                             className="object-cover"
                         />
                     </div>
