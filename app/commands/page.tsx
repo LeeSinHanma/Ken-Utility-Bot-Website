@@ -6,118 +6,98 @@ import { motion } from 'framer-motion';
 
 const commands = [
   {
-    category: "Economy & Bank",
-    icon: "account_balance",
+    category: "Alerts & Timers",
+    icon: "notifications_active",
     color: "text-primary",
     bgColor: "bg-primary/10",
     items: [
       {
-        name: "/bank balance",
-        params: "[user]",
-        description: "Check your current bank balance or view another user's balance (requires Bank Admin permissions).",
-        useCase: "Verifying your wealth before a split or auditing user funds."
+        name: "/alert",
+        params: "help",
+        description: "Manage and learn about the alert system.",
+        useCase: "Opening the alert system manual, presets, and virtual command guidance."
       },
-      {
-        name: "/bank add",
-        params: "<user> <amount>",
-        description: "Add a specific amount of coins to a user's account (Admin only).",
-        useCase: "Distributing event rewards, prizes, or manual compensation."
-      },
-      {
-        name: "/bank remove",
-        params: "<user> <amount>",
-        description: "Remove a specific amount of coins from a user's account (Admin only).",
-        useCase: "Processing payments for in-game trades or manual penalties."
-      },
-      {
-        name: "/bank setup",
-        params: "<admin-role>",
-        description: "Configure which Discord role is authorized to manage bank transactions.",
-        useCase: "Initial server setup to empower specific staff members."
-      }
-    ]
-  },
-  {
-    category: "Money Split",
-    icon: "content_cut",
-    color: "text-secondary",
-    bgColor: "bg-secondary/10",
-    items: [
-      {
-        name: "/split start",
-        params: "<amount> <discount> <users> [extra] [deductions] [modifiers]",
-        description: "Initiate a smart credit split with integrated math for taxes, discounts, and overhead costs.",
-        useCase: "Dividing loot from a boss hunt fairly after deducting preparation costs."
-      },
-      {
-        name: "/split check",
-        params: "",
-        description: "Displays a personal list of all pending splits that you have not yet claimed.",
-        useCase: "Catching up on unclaimed earnings across multiple sessions."
-      },
-      {
-        name: "/split help",
-        params: "",
-        description: "Provides a detailed technical guide on how the split system, modifiers, and manual claims work.",
-        useCase: "Learning how to use advanced modifiers like 50% @user for specialized payouts."
-      }
-    ]
-  },
-  {
-    category: "Alerts (Custom Commands)",
-    icon: "notifications_active",
-    color: "text-tertiary",
-    bgColor: "bg-tertiary/10",
-    items: [
       {
         name: "/create-alert",
-        params: "<name> <description> <role> <duration> <interval>",
-        description: "Create a permanent, server-specific slash command with preset timers and roles.",
-        useCase: "Building a reusable /farm-alert that pings every 5 minutes."
+        params: "<name> <description> <role> <duration> <interval> [remind-before] [color]",
+        description: "Create a new permanent slash command preset for the guild.",
+        useCase: "Defining a reusable alert command for a recurring event or spawn."
       },
       {
         name: "/edit-alert",
-        params: "<name> [options]",
-        description: "Modify the settings (role, timer, interval, color) of an existing custom alert command.",
-        useCase: "Updating the primary ping role for a boss alert."
+        params: "<name> [description] [role] [duration] [interval] [remind-before] [color]",
+        description: "Modify an existing custom preset for the guild.",
+        useCase: "Updating a preset when the role, timing, or branding changes."
       },
       {
         name: "/delete-alert",
         params: "<name>",
-        description: "Permanently removes a custom alert command from the server's database.",
-        useCase: "Removing a command for a limited-time event that has ended."
-      },
-      {
-        name: "/<custom-name>",
-        params: "[location] [duration] [image]",
-        description: "Triggers a dynamic countdown based on a template created via /create-alert.",
-        useCase: "Running a high-precision countdown for a specific event spawn."
+        description: "Delete a custom preset from the guild.",
+        useCase: "Removing a preset that is no longer needed."
       }
     ]
   },
   {
-    category: "General Utilities",
+    category: "Economy & Splits",
+    icon: "account_balance",
+    color: "text-secondary",
+    bgColor: "bg-secondary/10",
+    items: [
+      {
+        name: "/bank",
+        params: "balance | add | remove | setup | help",
+        description: "Guild bank and economy tools backed by SQLite.",
+        useCase: "Checking balances, configuring permissions, and managing user funds."
+      },
+      {
+        name: "/split",
+        params: "start | check | help",
+        description: "Create and manage money split sessions with claim and notify flows.",
+        useCase: "Tracking shared payouts and making sure everyone claims their share."
+      },
+      {
+        name: "/bank balance",
+        params: "[user]",
+        description: "Check your balance or, with permission, view another user's balance.",
+        useCase: "Reviewing account totals before a payout or split."
+      }
+    ]
+  },
+  {
+    category: "Admin / Utility",
     icon: "apps",
-    color: "text-blue-400",
-    bgColor: "bg-blue-400/10",
+    color: "text-tertiary",
+    bgColor: "bg-tertiary/10",
     items: [
       {
         name: "/mention-role",
-        params: "<target-role> [duration] [interval]",
-        description: "Set a high-precision recurring timer that pings a role at specific intervals.",
-        useCase: "Reminding the 'Guard' role to check a gate every 10 minutes."
+        params: "<target-role> <duration> <interval> <message>",
+        description: "Create a one-off or short timer that mentions a role.",
+        useCase: "Reminding a staff or raid role at fixed intervals."
+      },
+      {
+        name: "/mention-users",
+        params: "<users> <target-user> <duration> <interval> <message>",
+        description: "Create a one-off or short timer that mentions users.",
+        useCase: "Sending scheduled reminders to a specific group or person."
       },
       {
         name: "/help",
         params: "",
-        description: "Shows the master manual, including a live list of all Server Custom Presets currently active.",
-        useCase: "Orienting new users or checking available server-specific commands."
+        description: "Comprehensive user manual for the bot and guild presets.",
+        useCase: "Finding subsystem help and the current guild's custom alert presets."
+      },
+      {
+        name: "/sync-commands",
+        params: "",
+        description: "Force rebuild and sync slash commands for the current guild.",
+        useCase: "Refreshing command registration after setup or a deployment."
       },
       {
         name: "/ping",
         params: "",
-        description: "Heartbeat check to verify the bot's current latency and responsiveness.",
-        useCase: "Verifying if the bot is experiencing lag during critical windows."
+        description: "Health check that replies with Pong!",
+        useCase: "Confirming the bot is online and responsive."
       }
     ]
   }
@@ -148,7 +128,10 @@ export default function CommandsPage() {
             Control the Guild.
           </h1>
           <p className="max-w-2xl mx-auto text-lg text-on-surface-variant leading-relaxed">
-            Explore our comprehensive suite of slash commands designed to streamline your community management and economy.
+            This page mirrors the built-in commands documented in COMMANDS.md, with guild-specific custom alert commands excluded.
+          </p>
+          <p className="mt-5 max-w-2xl mx-auto text-sm text-on-surface-variant/80 leading-relaxed">
+            Server-created presets such as /farm-boss are generated per guild and can appear in /help, but they are not listed here.
           </p>
         </motion.div>
 
